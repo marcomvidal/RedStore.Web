@@ -126,6 +126,12 @@
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
                 </div>
+
+                <ul>
+                @foreach ($people as $person)
+                    <li>{{$person->name}}</li>
+                @endforeach
+                </ul>
             </div>
         </div>
     </body>

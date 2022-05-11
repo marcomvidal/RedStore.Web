@@ -6,6 +6,7 @@ services:
       args:
         user: dev
         uid: 1000
+        document_root: /var/www/html/public
       context: .
       dockerfile: Dockerfile
     volumes:
