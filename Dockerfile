@@ -19,17 +19,16 @@ RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Direct document root to the /public directory
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e "s!/var/www/html!${document_root}!g" /etc/apache2/sites-available/*.conf
-RUN sed -ri -e "s!/var/www/!${document_root}!g" /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN sed -ri -e "s!/var/www/html!${document_root}!g" /etc/apache2/sites-available/*.conf \
+    && sed -ri -e "s!/var/www/!${document_root}!g" /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 # Allow URLs rewriting and Access-Control-Allow-Origin headers
 RUN a2enmod rewrite headers
 
 # Create system user to run Composer and Artisan commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+RUN useradd -G www-data,root -u $uid -d /home/$user $user \
+    && mkdir -p /home/$user/.composer \
+    && chown -R $user:$user /home/$user
 
 # Get latest Composer version
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
