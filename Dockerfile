@@ -1,10 +1,9 @@
-FROM php:8.1-apache
+FROM php:8.1-fpm
 LABEL Name=RedStore Version=0.0.1
 
 # Arguments defined in docker-compose.yml
 ARG user
 ARG uid
-ARG document_root
 
 # Install system dependencies
 RUN apt-get update \
@@ -18,13 +17,6 @@ RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Direct document root to the /public directory
-RUN sed -ri -e "s!/var/www/html!${document_root}!g" /etc/apache2/sites-available/*.conf \
-    && sed -ri -e "s!/var/www/!${document_root}!g" /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-# Allow URLs rewriting and Access-Control-Allow-Origin headers
-RUN a2enmod rewrite headers
-
 # Create system user to run Composer and Artisan commands
 RUN useradd -G www-data,root -u $uid -d /home/$user $user \
     && mkdir -p /home/$user/.composer \
@@ -34,5 +26,5 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
-WORKDIR /var/www/html
+WORKDIR /var/www
 USER $user

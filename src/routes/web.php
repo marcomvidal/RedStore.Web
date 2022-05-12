@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Person;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,6 @@ use App\Models\Person;
 |
 */
 
-Route::get('/', function () {
-    $people = Person::all();
+Auth::routes();
 
-    return view('welcome', compact('people'));
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
