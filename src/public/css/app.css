@@ -1,7 +1,7 @@
-.product-listing__card {
-  min-height: 16em;
+.summary-card__container {
+  min-height: 19em;
 }
 
-.product-listing__link {
+.summary-card__link {
   text-decoration: none;
 }
