@@ -1,12 +1,15 @@
-<div class="col-sm-2 col-md-3">
-  <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{ $product->name }}</h5>
-      <p class="card-text">R$ {{ $product->price }}</p>
-      <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">
-        Details
+<div class="col-6 col-lg-2 mb-3">
+    <div class="card product-listing__card">
+      <a href="{{ route('products.show', $product->id) }}">
+        <img src="{{ $product->getPicturePath() }}" class="card-img-top">
       </a>
+      
+      <div class="card-body text-center">
+        <a href="{{ route('products.show', $product->id) }}" class="product-listing__link">
+          <h6 class="card-title">{{ $product->name }}</h6>
+        </a>
+        <p class="card-text">{{ $product->getCurrencyPrice() }}</p>
+      </div>
     </div>
-  </div>
+  </a>
 </div>

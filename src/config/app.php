@@ -188,7 +188,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // Factory Service Providers
+        // Factory Service Provider
         App\Providers\FakerServiceProvider::class,
     ],
 
