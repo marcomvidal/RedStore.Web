@@ -1,0 +1,7 @@
+.product-listing__card {
+  min-height: 16em;
+}
+
+.product-listing__link {
+  text-decoration: none;
+}

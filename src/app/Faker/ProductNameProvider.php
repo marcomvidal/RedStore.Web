@@ -7,21 +7,27 @@ use Faker\Provider\Base;
 class ProductNameProvider extends Base
 {
     protected static $names = [
-        'shirt',
-        't-shirt',
-        'pants',
-        'shorts',
-        'belt',
-        'hat',
-        'jacket',
-        'socks',
-        'shoes',
-        'tie',
-        'cap',
-        'scarf',
-        'blouse',
-        'gloves',
-        'dress'
+        'Apron',
+        'Bathrobe',
+        'Coat',
+        'Dress',
+        'Hoodies',
+        'Pajamas',
+        'Pants',
+        'Raincoat',
+        'Scarf',
+        'Shirt',
+        'Shorts',
+        'Skirt',
+        'Sweater',
+        'Swimsuit',
+        'T-Shirt',
+        'Tank',
+        'Tie',
+        'Tracksuit',
+        'Underwear',
+        'Uniform',
+        'Vest',
     ];
 
     public function productName()

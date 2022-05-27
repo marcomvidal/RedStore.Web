@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('sku');
             $table->text('description');
+            $table->string('picture');
             $table->decimal('price', 8, 2);
             $table->timestamps();
         });

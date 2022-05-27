@@ -13,15 +13,14 @@ class ProductFactory extends Factory
         return [
             'name' => $this->formattedName($productName),
             'sku' => $this->formattedSku($productName),
-            'description' => $this->faker->sentence(5, false),
+            'description' => $this->faker->paragraph(5, false),
+            'picture' => "{$productName}.png",
             'price' => $this->faker->randomFloat(2, 0, 1000)
         ];
     }
 
     private function formattedName($productName)
     {
-        $productName = ucfirst($productName);
-
         return "{$this->faker->colorName} {$productName}";
     }
 
