@@ -3,20 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Http\Services\ProductsService;
 
 class ProductsController extends Controller
 {
+    private ProductsService $service;
+
+    public function __construct(ProductsService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
-        $products = Product::simplePaginate(6);
+        $products = $this->service->getPaginated();
 
         return view('products.index', ['products' => $products]);
     }
 
-    public function show($id)
+    public function show($sku)
     {
-        $product = Product::find($id);
+        $product = $this->service->getBySku($sku);
 
         return view('products.show', ['product' => $product]);
     }

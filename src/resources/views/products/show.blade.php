@@ -2,13 +2,13 @@
 
 @section('content')
   @include('partials/breadcrumb', ['links' =>
-      [$product->name => route('products.show', $product->id)]
+    [$product->name => route('products.show', $product->sku)]
   ])
 
-  <div class="card">
+  <section class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-md-8">
+        <article class="col-md-8">
           <h2>{{ $product->name }}</h2>
           <h5>{{ $product->sku }}</h5>
           <p class="mt-4">{{ $product->description }}</p>
@@ -18,17 +18,16 @@
           <button type="button" class="btn btn-primary">Add to cart</button>
           <button type="button" class="btn btn-secondary">Edit</button>
           <button type="button" class="btn btn-danger">Delete</button>
-        </div>
+        </article>
 
-        <div class="col-md-4 d-flex justify-content-center">
-          <div class="align-self-center">
+        <aside class="col-md-4 d-flex justify-content-center">
+          <section class="align-self-center">
             <a href="{{ $product->getPicturePath() }}">
               <img src="{{ $product->getPicturePath() }}" />
             </a>
-          </div>
-          
-        </div>
+          </section>
+        </aside>
       </div>
     </div>
-  </div>
+  </section>
 @endsection

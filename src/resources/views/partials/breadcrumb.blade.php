@@ -4,12 +4,14 @@
       <a href="{{ route('products.index') }}">Home</a>
     </li>
 
-    @if (count($links) > 0)
-      @foreach ($links as $linkTitle => $linkUrl)
-        <li class="breadcrumb-item active" aria-current="page">
+    @foreach ($links as $linkTitle => $linkUrl)
+      <li class="breadcrumb-item active" aria-current="page">
+        @if ($linkUrl != end($links))
           <a href="{{ $linkUrl }}">{{ $linkTitle }}</a>
-        </li>
-      @endforeach
-    @endif
+        @else
+          {{ $linkTitle }}
+        @endif
+      </li>
+    @endforeach
   </ol>
 </nav>

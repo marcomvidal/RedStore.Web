@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials/breadcrumb', ['links' => []])
+  @include('partials/breadcrumb', ['links' => []])
 
-    <div class="row">
-      @foreach ($products as $product)
-        @include('products.partials.summary-card', ['product' => $product])
-      @endforeach
-    </div>
+  <section class="row">
+    @foreach ($products as $product)
+      @include('products.partials.summary-card', ['product' => $product])
+    @endforeach
+  </section>
 
-    <div class="text-center mt-3">
-      {{ $products->links() }}
-    </div>
+  <footer class="text-center mt-3">
+    {{ $products->links() }}
+  </footer>
 @endsection
