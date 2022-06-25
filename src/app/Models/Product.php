@@ -9,10 +9,18 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'name',
+        'sku',
+        'description',
+        'picture',
+        'price'
+    ];
 
     public function getCurrencyPrice()
     {
-        return Money::BRL($this->price);
+        return Money::USD($this->price);
     }
 
     public function getPicturePath()

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Http\Services\ProductsService;
+use App\Models\Product;
 
 class ProductsController extends Controller
 {
@@ -16,15 +18,29 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $products = $this->service->getPaginated();
-
-        return view('products.index', ['products' => $products]);
+        return view('products.index', [
+            'products' => $this->service->getPaginated()
+        ]);
     }
 
     public function show($sku)
     {
-        $product = $this->service->getBySku($sku);
+        return view('products.show', [
+            'product' => $this->service->getBySku($sku)
+        ]);
+    }
 
-        return view('products.show', ['product' => $product]);
+    public function create()
+    {
+        return view('products.create', [
+            'categories' => $this->service->getCategories()
+        ]);
+    }
+
+    public function store(ProductRequest $request)
+    {
+        $this->service->save($request);
+
+        return redirect()->to(route('products.index'));
     }
 }
